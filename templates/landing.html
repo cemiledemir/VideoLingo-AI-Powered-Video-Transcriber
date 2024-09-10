@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoLingo - Translate videos in seconds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            color: white;
+        }
+        body {
+            background-color: #0a2351; /* Fallback color */
+            background-image: linear-gradient(135deg, #0a2351 0%, #1e3c72 25%, #2a4a8d 50%, #4a69bd 75%, #6a89cc 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 14%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+        animation: pulse 2s infinite;
+        }
+        @keyframes pulse { /* Yeni */
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+        }
+        .app-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #76b1ff, #b4d6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content {
+            flex: 1;
+            max-width: 500px;
+            padding-right: 2rem;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+        h1 span {
+            color: #76b1ff;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .main-description {
+        font-size: 1.4rem;
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+        color: white;
+        }
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            font-size: 1 rem;
+        }
+        .feature-list li:before {
+            content: "✓ ";
+            color: #76b1ff;
+        }
+        .cta-button {
+            background-color: #76b1ff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #5a9aff;
+        }
+        .image-container {
+        flex: 1;
+        text-align: right;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+        }
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        }
+        .image-container:hover .image-overlay {
+            transform: translateY(0);
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            color: white;
+            text-decoration: none;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .dropbtn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .dropdown-content a {
+            color: #5a9aff;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            .image-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#76b1ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#b4d6ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="48" fill="url(#logoGradient)" />
+                    <path d="M35 25 L75 50 L35 75 Z" fill="white" />
+                </svg>
+                <span class="app-name">VideoLingo</span>
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <button class="dropbtn">Products</button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('index') }}">AI Video Transcriber</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="content">
+                    <h1>AI Video <span>Transcriber</span></h1>
+                    <p class="main-description">Translate videos to and from 99+ languages in seconds</p>
+                    <ul class="feature-list">
+                        <li>Instant translation of videos into multiple languages</li>
+                        <li>AI-driven transcription with OpenAI Whisper</li>
+                        <li>Advanced language processing with ChatGPT 4-mini</li>
+                        <li>Download or preview subtitles directly in the app</li>
+                    </ul>
+                    <a href="{{ url_for('index') }}" class="cta-button">Get Started</a>
+                </div>
+                <div class="image-container">
+                    <img src="{{ image_url }}" alt="Back to the Future scene">
+                    <div class="image-overlay">
+                        Translate any movie or music video with ease
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
